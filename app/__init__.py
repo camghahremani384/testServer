@@ -6,7 +6,7 @@ import os
 
 load_dotenv()
 
-db = SQLAlchemy
+db = SQLAlchemy()
 migrate = Migrate()
 
 def create_app():
@@ -19,5 +19,9 @@ def create_app():
 
     from app.routes import user_routes
     app.register_blueprint(user_routes.user_bp)
+
+    @app.route("/")
+    def home():
+        return "homepage go to /user/api/list for list of all users"
 
     return app
